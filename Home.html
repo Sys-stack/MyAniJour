@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyAniJour</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      overflow-x: hidden;
+      overflow-y: auto;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: rgb(255, 255, 255);
+      color: #333;
+    }
+
+    .topdiv {
+      background-image: url("https://github.com/Sys-stack/MyAniJour/raw/decor-files/IMG-20250327-WA0005.jpg");
+      width: 100%;
+      height: 300px;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .topbar {
+      background-color: rgba(0, 38, 77, 0.9);
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      width: 90%;
+      border-radius: 5px;
+      backdrop-filter: blur(5px);
+      box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+      font-weight: 600;
+    }
+
+    .topbar span {
+      font-size: 18px;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 20px;
+      padding: 10px;
+    }
+
+    .anicard {
+      box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+      border-radius: 5px;
+      background-color: rgba(0,0,0,0.025);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .anicard img {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .anicard h3 {
+      margin: 10px 0;
+    }
+
+    .anicard p {
+      font-size: 14px;
+    }
+
+    .anicard a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topdiv">
+    <div class="topbar">
+      <span>MyAniJour</span>
+      <span class="time">TIME</span>
+    </div>
+  </div>
+
+  <div class="content">
+    {% for anime in anime_list %}
+      <div class="anicard">
+        <img src="{{ anime.coverImage.large }}" alt="{{ anime.title.romaji }}">
+        <h3>{{ anime.title.english if anime.title.english else anime.title.romaji }}</h3>
+        <p>{{ anime.description[:150] }}...</p>
+        <a href="{{ anime.siteUrl }}" target="_blank">More Info</a>
+      </div>
+    {% endfor %}
+  </div>
+
+</body>
+</html>
