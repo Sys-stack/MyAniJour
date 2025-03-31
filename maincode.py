@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template_string
 import requests
 
 app = Flask(__name__)
@@ -35,7 +35,7 @@ def get_anime_data():
 def home():
     anime_list = get_anime_data()
     html = requests.get("https://cdn.jsdelivr.net/gh/Sys-stack/MyAniJour@latest/Home.html").text
-    return render_template(html, anime_list=anime_list)
+    return render_template_string(html, anime_list=anime_list)
 
 if __name__ == '__main__':
     app.run(debug=True)
