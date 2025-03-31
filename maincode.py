@@ -34,7 +34,8 @@ def get_anime_data():
 @app.route('/')
 def home():
     anime_list = get_anime_data()
-    return render_template('index.html', anime_list=anime_list)
+    html = requests.get("https://cdn.jsdelivr.net/gh/Sys-stack/MyAniJour@latest/Home.html").text
+    return render_template(html, anime_list=anime_list)
 
 if __name__ == '__main__':
     app.run(debug=True)
